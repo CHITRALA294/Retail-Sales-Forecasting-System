@@ -106,9 +106,15 @@ Retail-Sales-Forecasting-System
 ---
 ## 🌐 Live Demo
 
-🔗 **Streamlit App:** ## 🌐 Live Demo
+**🚀 Streamlit Application**
 
-🔗 **Streamlit App:** https://your-streamlit-app.streamlit.app
+https://retail-sales-forecasting-system-n857qq4by6esfrxkieksx2.streamlit.app/
+
+Explore the interactive dashboard to:
+- 📈 Analyze yearly and monthly sales trends
+- 🤖 Compare forecasting models (SARIMA, Prophet, XGBoost)
+- 📊 View category and region-wise sales
+- 🔍 Explore anomaly detection and demand intelligence insights
 
 ## 👩‍💻 Developed By
 
