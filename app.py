@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# -------------------------------
-# Page Configuration
-# -------------------------------
-
 st.set_page_config(
     page_title="Sales Forecasting Dashboard",
     page_icon="📊",
@@ -13,10 +9,6 @@ st.set_page_config(
 )
 
 st.title("📊 End-to-End Sales Forecasting & Demand Intelligence System")
-
-# -------------------------------
-# Load Dataset
-# -------------------------------
 
 df = pd.read_csv("train.csv")
 
@@ -26,10 +18,6 @@ df["Year"] = df["Order Date"].dt.year
 df["Month"] = df["Order Date"].dt.month
 
 st.success("Dataset Loaded Successfully!")
-
-# -------------------------------
-# Sidebar Filters
-# -------------------------------
 
 st.sidebar.header("Dashboard Filters")
 
@@ -55,10 +43,6 @@ if region != "All":
         filtered_df["Region"] == region
     ]
 
-# -------------------------------
-# KPI Cards
-# -------------------------------
-
 st.header("📈 Sales Overview")
 
 col1, col2, col3 = st.columns(3)
@@ -78,10 +62,6 @@ col3.metric(
     filtered_df["Customer ID"].nunique()
 )
 
-# -------------------------------
-# Yearly Sales
-# -------------------------------
-
 st.subheader("Yearly Sales")
 
 yearly_sales = filtered_df.groupby("Year")["Sales"].sum()
@@ -100,16 +80,12 @@ ax.set_title("Yearly Sales")
 
 st.pyplot(fig)
 
-# -------------------------------
-# Monthly Sales Trend
-# -------------------------------
-
 st.subheader("Monthly Sales Trend")
 
 monthly_sales = (
     filtered_df
     .set_index("Order Date")
-    .resample("M")["Sales"]
+    .resample("m")["Sales"]
     .sum()
 )
 
@@ -122,10 +98,6 @@ ax2.set_ylabel("Sales")
 ax2.set_title("Monthly Sales Trend")
 
 st.pyplot(fig2)
-
-# -------------------------------
-# Category Sales
-# -------------------------------
 
 st.subheader("Sales by Category")
 
@@ -145,10 +117,6 @@ ax3.set_title("Sales by Category")
 
 st.pyplot(fig3)
 
-# -------------------------------
-# Region Sales
-# -------------------------------
-
 st.subheader("Sales by Region")
 
 region_sales = filtered_df.groupby("Region")["Sales"].sum()
@@ -166,10 +134,6 @@ ax4.set_ylabel("Sales")
 ax4.set_title("Sales by Region")
 
 st.pyplot(fig4)
-
-# -------------------------------
-# Best Forecasting Model
-# -------------------------------
 
 st.header("🤖 Model Comparison")
 
@@ -205,10 +169,6 @@ st.dataframe(comparison)
 
 st.success("🏆 Best Model: XGBoost")
 
-# -------------------------------
-# Saved Charts
-# -------------------------------
-
 st.header("📊 Analysis Charts")
 
 chart_list = [
@@ -236,17 +196,9 @@ for title, path in chart_list:
     except:
         st.warning(f"{path} not found.")
 
-# -------------------------------
-# Dataset Preview
-# -------------------------------
-
 st.header("Dataset Preview")
 
 st.dataframe(filtered_df.head(20))
-
-# -------------------------------
-# Footer
-# -------------------------------
 
 st.markdown("---")
 
