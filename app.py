@@ -85,7 +85,7 @@ st.subheader("Monthly Sales Trend")
 monthly_sales = (
     filtered_df
     .set_index("Order Date")
-    .resample("m")["Sales"]
+    .resample("MS")["Sales"]
     .sum()
 )
 
